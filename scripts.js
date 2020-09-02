@@ -1,7 +1,18 @@
 // business logic
 function Contact(first, last){
-    firstName = first;
-    lastName = last;
+    this.firstName = first;
+    this.lastName = last;
+    this.addresses = [];
+}
+
+function Address(street, city, county) {
+  this.street = street;
+  this.city = city;
+  this.county = county;
+}
+
+Contact.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
 }
 
 // user interface logic
@@ -14,7 +25,7 @@ $(document).ready(function(){
 
         var newContact = new Contact(inputtedFirstName, inputtedLastName);
 
-        $("ul#contact").append("<li><span class = 'contact'>" + newContact.firstName + "</span></li>");
+        $("ul#contact").append("<li><span class = 'contact'>" + newContact.fullName()  + "</span></li>");
 
         $("input#new-first-name").val("");
         $("input#new-last-name").val("");
